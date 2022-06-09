@@ -8,24 +8,14 @@ const nextId = require("../utils/nextId");
 
 const idMatchRoute = require("../utils/idMatchRoute");
 
+const bodyDataHas = require("../utils/bodyDataHas");
+
 
 // TODO: Implement the /dishes handlers needed to make the tests pass
 
 
 function list(req, res){
     res.json({data: dishes})
-}
-
-function bodyDataHas(propertyName) {
-  return function (req, res, next) {
-    const { data = {} } = req.body;
-    if (data[propertyName]) {
-      if(data[propertyName] !== ""){
-        return next();
-      }
-    }
-    next({ status: 400, message: `Dish must include a ${propertyName}` });
-  };
 }
 
 function validPrice(req, res, next){
